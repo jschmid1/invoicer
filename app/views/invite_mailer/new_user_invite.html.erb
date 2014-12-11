@@ -1,0 +1,7 @@
+<%= User.find_by(email: @invite.email).name %>
+<p>invited you to join</p>
+<%= Flat.find_by(id: @invite.flat_id).name %>
+
+<p> join it by clicking this link</p>
+
+<%= @url %>

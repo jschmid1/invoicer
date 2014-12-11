@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   end
   resources :bills, only: []
 
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "registrations"}
   resources :users
+  resources :invites
 
   root 'dashboard#index'
 

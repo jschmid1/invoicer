@@ -10,6 +10,7 @@
               </a>
               <ul class="dropdown-menu">
                 <%= link_to current_user.name, current_user %>
+                <%= link_to Flat.find_by(id: current_user.flat_id).name, current_user if current_user.flat_id%>
                 <li class="divider"></li>
                 <li>
                   <%= link_to('Edit registration', edit_user_registration_path) %>

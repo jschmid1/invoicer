@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141210163317) do
+ActiveRecord::Schema.define(version: 20141211132914) do
 
   create_table "bills", force: true do |t|
     t.float    "value",      limit: 24
@@ -20,6 +20,22 @@ ActiveRecord::Schema.define(version: 20141210163317) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "payedby"
+  end
+
+  create_table "flats", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "invites", force: true do |t|
+    t.string   "email"
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "flat_id"
   end
 
   create_table "involved_in_bills", force: true do |t|
@@ -53,6 +69,7 @@ ActiveRecord::Schema.define(version: 20141210163317) do
     t.datetime "updated_at"
     t.string   "name"
     t.boolean  "admin",                             default: false
+    t.integer  "flat_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
