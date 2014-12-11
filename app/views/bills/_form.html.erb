@@ -1,0 +1,40 @@
+<%= form_for(@bill) do |f| %>
+    <% if @bill.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@bill.errors.count, "error") %> prohibited this bill from being saved:</h2>
+
+          <ul>
+            <% @bill.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :value %><br>
+      <%= f.text_field :value %>
+    </div>
+
+    <div class="field">
+      <%= f.label :date %><br>
+      <%= f.date_select :created_at %>
+    </div>
+
+     <div class="field">
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+    </div>
+
+    <div class="field">
+      <%= f.label :payedby %><br>
+      <%= f.collection_check_boxes :payedby, User.where.not(id: current_user.id), :id, :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :market_id %><br>
+      <%= f.select :market_id, Market.all.collect {|p| [ p.name, p.id ] }, { include_blank: true } %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

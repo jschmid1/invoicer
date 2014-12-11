@@ -1,0 +1,40 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <%= link_to "Comcalc", root_path, id: "logo" %>
+    <nav>
+      <ul class="nav navbar-nav pull-right">
+        <% if user_signed_in? %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Account <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <%= link_to current_user.name, current_user %>
+                <li class="divider"></li>
+                <li>
+                  <%= link_to('Edit registration', edit_user_registration_path) %>
+                  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <%= link_to('Dashboard', root_path) %>
+            </li>
+            <li>
+              <%= link_to('Create new bill', new_bill_path) %>
+            </li>
+            <li>
+              <%= link_to('List all bills', bills_path) %>
+            </li>
+
+        <% else %>
+            <li>
+              <%= link_to('Register', new_user_registration_path)  %>
+              <%= link_to('Login', new_user_session_path, class: 'btn btn-success')  %>
+              <!--<i class="glyphicon glyphicon-plus"></i> New Todo-->
+            </li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>

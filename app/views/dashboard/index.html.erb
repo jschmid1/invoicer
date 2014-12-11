@@ -1,0 +1,6 @@
+<% if user_signed_in? %>
+    <% @user.each do |user| %>
+        <%= user.name %>
+        <%= user.balance %><br>
+    <% end %>
+<% end %>

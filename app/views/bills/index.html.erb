@@ -1,0 +1,32 @@
+<h1>Listing bills</h1>
+
+<%= will_paginate @bills %>
+<table>
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>User</th>
+      <th>Market</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bills.each do |bill| %>
+      <tr>
+        <td><%= bill.value %></td>
+        <td><%= User.where(id: bill.user_id).first.name %></td>
+        <td><%= Market.where(id: bill.market_id).first.name %></td>
+        <td><%= link_to 'Show', bill %></td>
+        <td><%= link_to 'Edit', edit_bill_path(bill) if current_user.admin? %></td>
+        <td><%= link_to 'Destroy', bill, method: :delete, data: { confirm: 'Are you sure?' } if current_user.admin? %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @bills %>
+
+<br>
+
+<%= link_to 'New Bill', new_bill_path %>

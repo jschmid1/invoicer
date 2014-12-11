@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+
+  <strong>Value:</strong>
+  <%= @bill.value %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= User.where(id: @bill.user_id).first.name %>
+</p>
+
+<p>
+  <strong>Market:</strong>
+  <%= Market.where(id: @bill.market_id).first.name  %>
+</p>
+
+<%= link_to 'Edit', edit_bill_path(@bill) %> |
+<%= link_to 'Back', bills_path %>
