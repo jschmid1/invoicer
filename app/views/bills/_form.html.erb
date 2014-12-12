@@ -27,13 +27,14 @@
 
     <div class="field">
       <%= f.label :payedby %><br>
-      <%= f.collection_check_boxes :payedby, User.where.not(id: current_user.id), :id, :name %>
+      <%= f.collection_check_boxes :payedby, User.where.not(id: current_user.id).where(flat_id: current_user.flat_id), :id, :name %>
     </div>
 
     <div class="field">
       <%= f.label :market_id %><br>
       <%= f.select :market_id, Market.all.collect {|p| [ p.name, p.id ] }, { include_blank: true } %>
     </div>
+
     <div class="actions">
       <%= f.submit %>
     </div>

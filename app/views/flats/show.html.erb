@@ -10,6 +10,18 @@
   <%= User.find_by(id: @flat.owner).name %>
 </p>
 
-<%= link_to 'Edit', edit_flat_path(@flat) %> |
-<%= link_to 'Back', flats_path %> |
-<%= link_to 'Leave Flat', leave_flat_path %>
+<p>
+  <strong>Member:</strong>
+<br>
+
+<% @member.each do |flat| %>
+    <td><%= flat.name %></td>
+    <td><%= flat.balance %></td>
+    <br>
+<%end %>
+</p>
+<br>
+
+    <%= link_to 'Edit', edit_flat_path(@flat) %> |
+    <%= link_to 'Back', flats_path %> |
+    <%= link_to 'Leave Flat', leave_flat_path %>

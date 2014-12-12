@@ -21,16 +21,13 @@
               </ul>
             </li>
             <li>
-              <%= link_to('Dashboard', root_path) %>
+              <%= link_to('Dashboard', graphs_path)if current_user.flat_id %>
             </li>
             <li>
-              <%= link_to('Graphs', graphs_path) %>
+              <%= link_to('Create new bill', new_bill_path )if current_user.flat_id %>
             </li>
             <li>
-              <%= link_to('Create new bill', new_bill_path) %>
-            </li>
-            <li>
-              <%= link_to('List all bills', bills_path) %>
+              <%= link_to('List all bills', bills_path)if current_user.flat_id %>
             </li>
 
         <% else %>

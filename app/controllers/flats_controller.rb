@@ -9,6 +9,7 @@ class FlatsController < ApplicationController
   # end
 
   def show
+    @member = User.where(flat_id: @flat.id)
     respond_with(@flat)
   end
 
