@@ -3,7 +3,8 @@ class BillsController < ApplicationController
   respond_to :html
 
   def index
-    @bills = Bill.all.paginate(page: params[:page], per_page: 5)
+    flatmates = User.where(flat_id: current_user.flat_id)
+    @bills = Bill.where(user_id: flatmates.map {|x|x.id}).paginate(page: params[:page], per_page: 5)
     respond_with(@bills)
   end
 
@@ -25,6 +26,7 @@ class BillsController < ApplicationController
     @bill = Bill.new(bill_params)
     if @bill.save
       calculate_balance
+      update_market_count
     end
     respond_with(@bill)
   end
@@ -41,6 +43,10 @@ class BillsController < ApplicationController
       User.find_by(id: id).update_attributes(balance: "#{User.find_by(id: id).balance  - frac_val})")
     end
     pos_user.update_attributes(balance: "#{User.find_by(id: @bill.user_id).balance + @bill.value - frac_val}")
+  end
+
+  def update_market_count
+    Market.increment_counter(:count, params[:bill][:market_id])
   end
 
   def update

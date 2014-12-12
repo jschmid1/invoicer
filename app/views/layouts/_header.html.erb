@@ -9,17 +9,22 @@
                 Account <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <%= link_to current_user.name, current_user %>
-                <%= link_to Flat.find_by(id: current_user.flat_id).name, current_user if current_user.flat_id%>
+                Username: <%= link_to current_user.name, current_user %><br>
+                <%= link_to Flat.find_by(id: current_user.flat_id).name, flat_path(current_user.flat_id) if current_user.flat_id%>
                 <li class="divider"></li>
                 <li>
-                  <%= link_to('Edit registration', edit_user_registration_path) %>
+                  <%= link_to('Edit Profile', edit_user_registration_path) %>
+                  <%= link_to('Invite to Flat', new_invite_path) if current_user.flat_id  %>
+                  <%= link_to('Create new Flat', new_flat_path) unless current_user.flat_id %>
                   <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
                 </li>
               </ul>
             </li>
             <li>
               <%= link_to('Dashboard', root_path) %>
+            </li>
+            <li>
+              <%= link_to('Graphs', graphs_path) %>
             </li>
             <li>
               <%= link_to('Create new bill', new_bill_path) %>

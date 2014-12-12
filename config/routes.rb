@@ -1,14 +1,19 @@
 Rails.application.routes.draw do
+
   authenticate :user do
+    resources :invites
+    resources :flats
     resources :bills, only: [:index, :create, :edit, :update, :destroy, :new, :show]
+    get '/graphs', to: 'dashboard#graphs'
+    get '/leave_flat', to: 'users#leave_flat'
   end
   resources :bills, only: []
 
   devise_for :users, :controllers => {:registrations => "registrations"}
   resources :users
-  resources :invites
 
-  root 'dashboard#index'
+
+  root 'dashboard#welcome'
 
 
 

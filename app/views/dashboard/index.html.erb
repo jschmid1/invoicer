@@ -1,14 +1,25 @@
-<% if user_signed_in? %>
-    <% @user.each do |user| %>
-        <%= user.name %>
-        <%= user.balance %><br>
-    <% end %>
-    <%= pie_chart User.group(:balance).count %>
+<table>
+  <thead>
+  <tr>
+    <th>Username</th>
+    <th>Balance</th>
+    <th colspan="100"></th>
+  </tr>
+  </thead>
 
-    <%= area_chart Bill.group_by_week(:created_at).maximum(:value) %>
+  <tbody>
+  <% if user_signed_in? %>
+      <tr>
+        <% @user.each do |user| %>
+            <td> <%= user.name %></td>
+            <td><%= user.balance %></td>
+     </tr>
+     <% end %>
+        <br>
 
-    <%= bar_chart Market.group(:name).sum(:count) %>
 
-<% end %>
+  <% end %>
 
+  </tbody>
+</table>
 

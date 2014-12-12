@@ -6,4 +6,10 @@ class InviteMailer < ActionMailer::Base
       @url  = url
       mail(to: @invite.email, subject: 'Pending Invitation for Invoicer')
   end
+
+  def existing_user_invite(invite)
+    @invite = invite
+    mail(to: @invite.email, subject: 'Pending invitation for Invoicer')
+  end
+
 end

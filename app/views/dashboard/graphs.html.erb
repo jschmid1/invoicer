@@ -1,0 +1,5 @@
+<%= pie_chart User.group(:balance).count %>
+
+<%= area_chart Bill.group_by_week(:created_at).maximum(:value) %>
+
+<%= bar_chart Market.group(:name).sum(:count) %>

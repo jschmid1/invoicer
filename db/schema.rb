@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141211132914) do
+ActiveRecord::Schema.define(version: 20141212155757) do
 
   create_table "bills", force: true do |t|
     t.float    "value",      limit: 24
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20141211132914) do
 
   create_table "flats", force: true do |t|
     t.string   "name"
+    t.integer  "owner"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
