@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141212155757) do
+ActiveRecord::Schema.define(version: 20141212212102) do
 
   create_table "bills", force: true do |t|
     t.float    "value",      limit: 24
@@ -50,6 +50,14 @@ ActiveRecord::Schema.define(version: 20141212155757) do
     t.string   "name"
     t.integer  "count"
     t.integer  "voucher"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "todos", force: true do |t|
+    t.string   "task"
+    t.boolean  "done"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

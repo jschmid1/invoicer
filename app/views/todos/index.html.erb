@@ -1,0 +1,30 @@
+<strong> InCompleted </strong> <br>
+    <ul>
+      <% @items_not_done.each do |todo| %>
+          <li>
+            <!--<%= check_box_tag "task_id[]", todo.id %>-->
+            <%= todo.task %>
+            <%= link_to "Mark as complete", complete_todo_path(todo), :method => :put %>
+            <br>
+          </li>
+      <% end %>
+    </ul>
+
+<strong> Completed </strong> <br>
+<ul>
+  <% @items_done.each do |todo| %>
+      <li>
+        <!--<%= check_box_tag "task_id[]", todo.id %>-->
+        <%= todo.task %>
+        <%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %> |
+        <%= link_to "Mark as incomplete", incomplete_todo_path(todo), :method => :put %>
+        <br>
+      </li>
+  <% end %>
+</ul>
+
+<%= render 'form' %>
+
+
+
+
