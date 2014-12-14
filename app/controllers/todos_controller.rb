@@ -1,11 +1,11 @@
 class TodosController < ApplicationController
-  before_action :set_todo, only: [:show, :edit, :update, :destroy, :complete]
+  before_action :set_todo, only: [:show, :edit, :update, :destroy, :complete, :incomplete]
 
   respond_to :html
 
   def index
     @todo = Todo.new
-    @items_not_done = Todo.where(done: false).where()
+    @items_not_done = Todo.where(done: false)
     @items_done = Todo.where(done: true)
     respond_with(@todos)
   end
