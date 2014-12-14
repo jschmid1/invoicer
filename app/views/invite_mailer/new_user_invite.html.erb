@@ -1,4 +1,6 @@
-<%= User.find_by(email: @invite.email).name %>
+<%= User.find_by(id: @invite.sender_id).name %>
+
+
 <p>invited you to join</p>
 <%= Flat.find_by(id: @invite.flat_id).name %>
 
