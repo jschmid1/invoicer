@@ -11,5 +11,4 @@ class InviteMailer < ActionMailer::Base
     @invite = invite
     mail(to: @invite.email, subject: 'Pending invitation for Invoicer')
   end
-
 end
