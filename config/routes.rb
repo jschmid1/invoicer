@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :flats
     resources :bills, only: [:index, :create, :edit, :update, :destroy, :new, :show]
     get '/graphs', to: 'dashboard#graphs'
+    get '/statistics', to: 'dashboard#statistics'
     get '/leave_flat', to: 'users#leave_flat'
   end
   devise_for :users, :controllers => {:registrations => "registrations"}
