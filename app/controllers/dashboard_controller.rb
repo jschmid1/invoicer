@@ -7,7 +7,11 @@ class DashboardController < ApplicationController
   end
 
   def welcome
-    render 'welcome'
+    if user_signed_in?
+      render 'dashboard/graphs'
+    else
+      render 'welcome'
+    end
   end
 
   def graphs
