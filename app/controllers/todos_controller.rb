@@ -5,8 +5,9 @@ class TodosController < ApplicationController
 
   def index
     @todo = Todo.new
-    @items_not_done = Todo.where(done: false)
-    @items_done = Todo.where(done: true)
+    @user_ids  = User.where(flat_id: current_user.flat_id).map {|x| x.id}
+    @items_not_done = Todo.where(user_id: @user_ids).where(done: false)
+    @items_done = Todo.where(user_id: @user_ids).where(done: true)
     respond_with(@todos)
   end
 
