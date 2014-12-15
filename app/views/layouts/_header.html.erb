@@ -24,21 +24,23 @@
               <%= link_to('Dashboard', graphs_path)if current_user.flat_id %>
             </li>
             <li>
+              <%= link_to('Statisctics', statistics_path)if current_user.flat_id %>
+            </li>
+            <li>
               <%= link_to('Create new bill', new_bill_path )if current_user.flat_id %>
             </li>
             <li>
               <%= link_to('List all bills', bills_path)if current_user.flat_id %>
             </li>
-           <li>
+            <li>
               <%= link_to('Todos', todos_path) if current_user.flat_id %>
+              <!--<i class="glyphicon glyphicon-plus"></i>-->
             </li>
 
         <% else %>
-            <li>
-              <%= link_to('Register', new_user_registration_path)  %>
-              <%= link_to('Login', new_user_session_path, class: 'btn btn-success')  %>
-              <!--<i class="glyphicon glyphicon-plus"></i> New Todo-->
-            </li>
+            <!--<%= link_to('Register', new_user_registration_path)  %>-->
+            <!--<%= link_to('Login', new_user_session_path, class: 'btn btn-success')  %>-->
+
         <% end %>
       </ul>
     </nav>
