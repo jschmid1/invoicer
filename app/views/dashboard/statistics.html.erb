@@ -1,0 +1,3 @@
+<h1>Money spent this Month</h1>
+
+<h1><%= @bills_per_month.map {|bill| bill.value }.inject{|sum,x| sum + x } %></h1>
