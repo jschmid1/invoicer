@@ -1,7 +1,7 @@
 <h1>Listing bills</h1>
 
 <%= will_paginate @bills %>
-<table>
+<table border="1" id="cssTable">
   <thead>
     <tr>
       <th>Value</th>
@@ -14,12 +14,12 @@
   <tbody>
     <% @bills.each do |bill| %>
       <tr>
-        <td><%= bill.value %></td>
-        <td><%= User.where(id: bill.user_id).first.name %></td>
-        <td><%= Market.where(id: bill.market_id).first.name if bill.market_id%></td>
-        <td><%= link_to 'Show', bill %></td>
-        <td><%= link_to 'Edit', edit_bill_path(bill) if current_user.admin? %></td>
-        <td><%= link_to 'Destroy', bill, method: :delete, data: { confirm: 'Are you sure?' } if current_user.admin? %></td>
+        <td align="center" valign="middle" ><%= bill.value %></td>
+        <td align="center" valign="middle" ><%= User.where(id: bill.user_id).first.name %></td>
+        <td align="center" valign="middle" ><%= Market.where(id: bill.market_id).first.name if bill.market_id%></td>
+        <td align="center" valign="middle" ><%= link_to 'Show', bill %></td>
+        <td align="center" valign="middle" ><%= link_to 'Edit', edit_bill_path(bill) if current_user.admin? %></td>
+        <td align="center" valign="middle" ><%= link_to 'Destroy', bill, method: :delete, data: { confirm: 'Are you sure?' } if current_user.admin? %></td>
       </tr>
     <% end %>
   </tbody>
