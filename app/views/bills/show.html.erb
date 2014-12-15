@@ -7,7 +7,7 @@
 </p>
 
 <p>
-  <strong>User:</strong>
+  <strong>Payed by:</strong>
   <%= User.where(id: @bill.user_id).first.name %>
 </p>
 
@@ -16,5 +16,11 @@
   <%= Market.where(id: @bill.market_id).first.name  %>
 </p>
 
+<p>
+<strong>Participants:</strong>
+  <% User.where(id: InvolvedInBill.where(bill_id: @bill.id).map {|user| user.user_id}).each do |user|  %>
+  <%= user.name %>,
+  <%end%>
+</p>
 <%= link_to 'Edit', edit_bill_path(@bill) %> |
 <%= link_to 'Back', bills_path %>
