@@ -1,32 +1,53 @@
-<strong> InCompleted </strong> <br>
-<ul>
+<h1> InCompleted </h1> <br>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Task</th>
+    <th colspan="1"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <%= will_paginate @items_not_done %>
   <% if @items_not_done %>
       <% @items_not_done.each  do |todo|  %>
-          <li>
+          <tr>
             <!--<%= check_box_tag "task_id[]", todo.id %>-->
-            <%= todo.task %>
-            <%= link_to "Mark as complete", complete_todo_path(todo), :method => :put %>
-            <br>
-          </li>
+            <td><%= todo.task %></td>
+            <td> <%= link_to "Mark as complete", complete_todo_path(todo), :method => :put, class: 'btn btn-success btn-xs' %></td>
+         </tr>
       <% end %>
   <% end %>
-</ul>
+  </tbody>
+</table>
+<%= will_paginate @items_not_done %>
 
-<strong> Completed </strong> <br>
-<ul>
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Task</th>
+    <th colspan="1"></th>
+  </tr>
+  </thead>
+
+
+<h1> Completed </h1>
+  <%= will_paginate @items_done %>
+  <tbody>
   <% if @items_done %>
       <% @items_done.each do |todo| %>
-          <li>
             <!--<%= check_box_tag "task_id[]", todo.id %>-->
-            <%= todo.task %>
-            <%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %> |
-            <%= link_to "Mark as incomplete", incomplete_todo_path(todo), :method => :put %>
-            <br>
-          </li>
+          <tr>
+            <td> <%= todo.task %></td>
+            <td> <%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
+            <td><%= link_to "Mark as incomplete", incomplete_todo_path(todo), :method => :put, class: 'btn btn-success btn-xs' %></td>
+          </tr>
       <% end %>
   <% end %>
-</ul>
-
+  </tbody>
+</table>
+<%= will_paginate @items_done %>
 <%= render 'form' %>
 
 
