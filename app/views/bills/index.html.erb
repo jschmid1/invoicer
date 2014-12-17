@@ -1,6 +1,5 @@
 <h1>Listing bills</h1>
 
-<%= will_paginate @bills %>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -25,8 +24,7 @@
   </tbody>
 </table>
 
-<%= will_paginate @bills %>
-
+<%= will_paginate @bills, renderer: BootstrapPagination::Rails %>
 <br>
 
 <%= link_to 'New Bill', new_bill_path , class: 'btn btn-default' %>
