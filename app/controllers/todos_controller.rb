@@ -25,7 +25,9 @@ class TodosController < ApplicationController
     @todo = Todo.find(params[:id])
 
     if @todo.update_attribute(:done, true)
-      redirect_to todos_path, :notice => "Checked as done"
+      redirect_to todos_path
+      flash[:success] = 'Marked as Complete'
+
     else
       redirect_to new_todo_path
     end
@@ -36,7 +38,8 @@ class TodosController < ApplicationController
     @todo = Todo.find(params[:id])
 
     if @todo.update_attribute(:done, false)
-      redirect_to todos_path, :notice => "Checked as done"
+      redirect_to todos_path
+      flash[:success] = 'Marked as Incomplete'
     else
       redirect_to new_todo_path
     end
@@ -46,6 +49,7 @@ class TodosController < ApplicationController
     @todo = Todo.new(todo_params)
     @todo.done = false
     @todo.save
+    flash[:success] = 'Todo was successfully created.' if @todo.save
     redirect_to todos_path
   end
 

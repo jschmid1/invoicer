@@ -27,6 +27,7 @@ class BillsController < ApplicationController
     if @bill.save
       calculate_balance
       update_market_count
+      flash[:success] = 'Marked as Complete'
     end
     respond_with(@bill)
   end

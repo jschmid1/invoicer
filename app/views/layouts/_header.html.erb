@@ -10,7 +10,7 @@
               </a>
               <ul class="dropdown-menu">
                 Username: <%= link_to current_user.name, current_user %><br>
-                <%= link_to Flat.find_by(id: current_user.flat_id).name, flat_path(current_user.flat_id) if current_user.flat_id%>
+                <%= link_to(Flat.find_by(id: current_user.flat_id).name, flat_path(current_user.flat_id), class: 'btn btn-danger dropdown-toggle') if current_user.flat_id%>
                 <li class="divider"></li>
                 <li>
                   <%= link_to('Edit Profile', edit_user_registration_path) %>
