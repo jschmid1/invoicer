@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
 
-  resources :events
 
   resources :bills, only: []
   authenticate :user do
@@ -11,6 +10,7 @@ Rails.application.routes.draw do
         put :complete, :incomplete
       end
     end
+    resources :events
     resources :flats
     resources :bills, only: [:index, :create, :edit, :update, :destroy, :new, :show]
     get '/graphs', to: 'dashboard#graphs'
