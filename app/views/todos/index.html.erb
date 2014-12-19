@@ -14,7 +14,7 @@
             <!--<%= check_box_tag "task_id[]", todo.id %>-->
             <td><%= todo.task %></td>
             <td> <%= link_to "Mark as complete", complete_todo_path(todo), :method => :put, class: 'btn btn-success btn-xs' %></td>
-         </tr>
+          </tr>
       <% end %>
   <% end %>
   </tbody>
@@ -31,11 +31,11 @@
   </tr>
   </thead>
 
-<h1> Completed </h1>
+  <h1> Completed </h1>
   <tbody>
   <% if @items_done %>
       <% @items_done.each do |todo| %>
-            <!--<%= check_box_tag "task_id[]", todo.id %>-->
+          <!--<%= check_box_tag "task_id[]", todo.id %>-->
           <tr>
             <td> <%= todo.task %></td>
             <td> <%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>

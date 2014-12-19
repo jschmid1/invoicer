@@ -23,7 +23,6 @@ class TodosController < ApplicationController
 
   def complete
     @todo = Todo.find(params[:id])
-
     if @todo.update_attribute(:done, true)
       redirect_to todos_path
       flash[:success] = 'Marked as Complete'
@@ -36,7 +35,6 @@ class TodosController < ApplicationController
 
   def incomplete
     @todo = Todo.find(params[:id])
-
     if @todo.update_attribute(:done, false)
       redirect_to todos_path
       flash[:success] = 'Marked as Incomplete'

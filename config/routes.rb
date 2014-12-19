@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  resources :events
+
   resources :bills, only: []
   authenticate :user do
     resources :invites
