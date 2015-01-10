@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141212212102) do
+ActiveRecord::Schema.define(version: 20150110161358) do
 
   create_table "bills", force: true do |t|
     t.float    "value",      limit: 24
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 20141212212102) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "payedby"
+    t.string   "note"
+  end
+
+  create_table "events", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "flats", force: true do |t|
@@ -27,6 +37,10 @@ ActiveRecord::Schema.define(version: 20141212212102) do
     t.integer  "owner"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   create_table "invites", force: true do |t|
@@ -50,6 +64,14 @@ ActiveRecord::Schema.define(version: 20141212212102) do
     t.string   "name"
     t.integer  "count"
     t.integer  "voucher"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "meetings", force: true do |t|
+    t.string   "name"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -79,6 +101,10 @@ ActiveRecord::Schema.define(version: 20141212212102) do
     t.string   "name"
     t.boolean  "admin",                             default: false
     t.integer  "flat_id"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
