@@ -15,11 +15,16 @@
   <strong>Market:</strong>
   <%= Market.where(id: @bill.market_id).first.name  %>
 </p>
-
+<%if @bill.note %>
+    <p>
+      <strong>Note:</strong>
+      <%= @bill.note  %>
+    </p>
+<%end%>
 <p>
-<strong>Participants:</strong>
+  <strong>Participants:</strong>
   <% User.where(id: InvolvedInBill.where(bill_id: @bill.id).map {|user| user.user_id}).each do |user|  %>
-  <%= user.name %>,
+      <%= user.name %>,
   <%end%>
 </p>
 <%= link_to 'Edit', edit_bill_path(@bill) %> |

@@ -1,10 +1,12 @@
+
 Chart for Balances
-<%= bar_chart User.where(flat_id: current_user.flat_id).group(:name).sum(:balance) %>
+<%= bar_chart User.where(flat_id: current_user.flat_id).group(:name).sum(:balance) if current_user.flat_id%>
 
 Chart for the last 30 days
-<%= area_chart Bill.where(user_id: User.where(flat_id: current_user.flat_id)).where(created_at: Time.now-30.days..Time.now).group_by_day(:created_at).maximum(:value) %>
+<%= area_chart Bill.where(user_id: User.where(flat_id: current_user.flat_id)).where(created_at: Time.now-30.days..Time.now).group_by_day(:created_at).maximum(:value)if current_user.flat_id %>
 
-<%= bar_chart Market.group(:name).sum(:count) %>
+<%=bar_chart Market.where(id: Bill.where(id: InvolvedInBill.where(user_id: User.where(flat_id: current_user.flat_id)).map(&:bill_id)).map(&:market_id)).group(:name).sum(:count)%>
+mapped market_ids represent the count for markets.. TBC
 Market is still wrong because has no connection to Flats at all
 
 

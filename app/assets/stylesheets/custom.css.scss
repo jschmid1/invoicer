@@ -130,11 +130,11 @@ p {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: #fff;
+  color: darkseagreen;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
-  font-weight: bold;
+  font-weight: bolder;
 }
 
 #logo:hover {
@@ -719,3 +719,32 @@ table.fc-border-separate {
 .fc-agenda .ui-resizable-resizing { /* TODO: better selector */
   _overflow: hidden;
 }
+
+
+.round-image-50 {
+  background-color: white;
+  border: 1px solid #d9d9d9;
+  border-radius: 25px;
+  -moz-border-radius: 25px;
+  -webkit-border-radius: 25px;
+  height: 50px;
+  width: 50px;
+  overflow: hidden;
+  text-align: center;
+  img { width: 100% }
+}
+
+
+.round-image-250 {
+  background-color: white;
+  border: 1px solid #d9d9d9;
+  border-radius: 25px;
+  -moz-border-radius: 25px;
+  -webkit-border-radius: 25px;
+  height: 250px;
+  width: 250px;
+  overflow: hidden;
+  text-align: center;
+  img { width: 100% }
+}
+

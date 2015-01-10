@@ -7,8 +7,10 @@ class DashboardController < ApplicationController
   end
 
   def welcome
-    if user_signed_in?
+    if user_signed_in? && current_user.flat_id
       render 'dashboard/graphs'
+    elsif user_signed_in?
+      render 'dashboard/instructions'
     else
       render 'welcome'
     end
@@ -20,6 +22,7 @@ class DashboardController < ApplicationController
 
   def statistics
     @bills_per_month = Bill.where(created_at: Time.now-30.days..Time.now).where(user_id: User.where(flat_id: current_user.flat_id))
+    @bills_this_month = Bill.where(created_at: (Time.now-(Time.now.day).days)..Time.now).where(user_id: User.where(flat_id: current_user.flat_id))
     render 'dashboard/statistics'
   end
 

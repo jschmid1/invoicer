@@ -4,7 +4,7 @@ class BillsController < ApplicationController
 
   def index
     flatmates = User.where(flat_id: current_user.flat_id)
-    @bills = Bill.where(user_id: flatmates.map {|x|x.id}).paginate(page: params[:page], per_page: 5)
+    @bills = Bill.where(user_id: flatmates.map {|x|x.id}).paginate(page: params[:page], per_page: 5).order('created_at DESC')
     respond_with(@bills)
   end
 
@@ -27,7 +27,7 @@ class BillsController < ApplicationController
     if @bill.save
       calculate_balance
       update_market_count
-      flash[:success] = 'Marked as Complete'
+      flash[:success] = 'Succesfully created Bill'
     end
     respond_with(@bill)
   end
@@ -71,6 +71,6 @@ class BillsController < ApplicationController
   end
 
   def bill_params
-    params.require(:bill).permit(:value, :user_id, :market_id, :created_at)
+    params.require(:bill).permit(:value, :user_id, :market_id, :created_at, :note)
   end
 end

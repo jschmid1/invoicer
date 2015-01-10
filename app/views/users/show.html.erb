@@ -1,3 +1,4 @@
-<%= @user.name %>
-<%= @user.balance %>
+<h1><%= @user.name %></h1>
+<%= link_to image_tag(current_user.avatar.url(:medium), class: 'round-image-250'), current_user %> <br>
+<h1><%= @user.balance %></h1>
 

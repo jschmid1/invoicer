@@ -35,6 +35,11 @@
       <%= f.select :market_id, Market.all.collect {|p| [ p.name, p.id ] }, { include_blank: true } %>
     </div>
 
+    <div class="field">
+      <%= f.label :note %><br>
+      <%= f.text_field :note %>
+    </div>
+
     <div class="actions">
       <%= f.submit %>
     </div>

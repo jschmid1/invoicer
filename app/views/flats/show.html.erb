@@ -1,27 +1,30 @@
 <p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Name:</strong>
-  <%= @flat.name %>
+  <h1><%= @flat.name %></h1>
 </p>
 
-<p>
-  <strong>Owner:</strong>
-  <%= User.find_by(id: @flat.owner).name %>
-</p>
+<%= link_to image_tag(Flat.find_by(id: current_user.flat_id).avatar.url(:medium), class: 'round-image-250'), flat_path(current_user.flat_id) if current_user.flat_id%>
+
 
 <p>
-  <strong>Member:</strong>
-<br>
-
-<% @member.each do |flat| %>
-    <td><%= flat.name %></td>
-    <td><%= flat.balance %></td>
+  <strong>Members:</strong>
+  <br>
+  <% @member.each do |user| %>
+    <td><%= user.name %></td>
+    <td><%= user.balance %></td>
+    <td><%= image_tag(user.avatar.url(:thumb), class: 'round-image-50')%></td>
     <br>
 <%end %>
 </p>
 <br>
+<%= bar_chart User.where(flat_id: current_user.flat_id).group(:name).sum(:balance) if current_user.flat_id%>
+<p>
+  <strong>Owner:</strong>
+  <%= User.find_by(id: @flat.owner).name %>
+  <%= link_to image_tag(User.find_by(id: @flat.owner).avatar.url(:thumb), class: 'round-image-50'), User.find_by(id: @flat.owner) %>
+</p>
 
-    <%= link_to 'Edit', edit_flat_path(@flat) %> |
-    <%= link_to 'Back', flats_path %> |
-    <%= link_to 'Leave Flat', leave_flat_path %>
+
+<%= link_to 'Edit', edit_flat_path(@flat), class: 'btn btn-default'  %>
+<%= link_to 'Back', flats_path, class: 'btn btn-default'  %>
+<%= link_to 'Leave Flat', leave_flat_path, class: 'btn btn-default'  %>

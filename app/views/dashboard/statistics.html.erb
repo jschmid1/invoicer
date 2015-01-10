@@ -1,3 +1,14 @@
-<h1>Money spent this Month</h1>
+<%if @bills_per_month.empty? && @bills_this_month.empty?%>
+    <h1>You currently do not have enough Bills to create Statistics</h1>
+<%end%>
 
-<h1><%= @bills_per_month.map {|bill| bill.value }.inject{|sum,x| sum + x } %></h1>
+<%unless @bills_per_month.empty? %>
+    <h1>Money spent the last 30 days</h1>
+    <h1><%= @bills_per_month.map {|bill| bill.value }.inject{|sum,x| sum + x } %></h1>
+<%end%>
+
+
+<%unless @bills_this_month.empty? %>
+    <h1>Money spent during current Month</h1>
+    <h1><%= @bills_this_month.map {|bill| bill.value }.inject{|sum,x| sum + x } %></h1>
+<%end%>
