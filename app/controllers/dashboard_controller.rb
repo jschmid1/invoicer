@@ -20,6 +20,12 @@ class DashboardController < ApplicationController
     render 'dashboard/graphs'
   end
 
+  def admin
+    @all_flats = Flat.all
+    @all_users = User.all
+    render 'dashboard/admin'
+  end
+
   def statistics
     @bills_per_month = Bill.where(created_at: Time.now-30.days..Time.now).where(user_id: User.where(flat_id: current_user.flat_id))
     @bills_this_month = Bill.where(created_at: (Time.now-(Time.now.day).days)..Time.now).where(user_id: User.where(flat_id: current_user.flat_id))

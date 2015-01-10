@@ -1,0 +1,29 @@
+<h1>All Flats</h1> <br>
+
+<table class="table table-hover table-bordered">
+
+  <tbody>
+  <% @all_flats.each do |flat| %>
+      <tr>
+        <td><%=link_to(flat.name, flat_path(flat))%></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<h1>All Users</h1> <br>
+
+<table class="table table-hover table-bordered">
+
+  <tbody>
+  <% @all_users.each do |user| %>
+      <tr>
+        <td><%=link_to(user.name, user_path(user))%></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
