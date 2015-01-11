@@ -39,8 +39,8 @@
           <!--<%= check_box_tag "task_id[]", todo.id %>-->
           <tr>
             <td> <%= todo.task %></td>
-            <td> <%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
             <td><%= link_to "Mark as incomplete", incomplete_todo_path(todo), :method => :put, class: 'btn btn-success btn-xs' %></td>
+            <td> <%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
           </tr>
       <% end %>
   <% end %>

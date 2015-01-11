@@ -52,6 +52,7 @@ div
 
 body {
   padding-top: 60px;
+  padding-bottom: 70px;
 }
 //
 //section {
@@ -72,7 +73,7 @@ body {
 
 
 footer {
-  margin-top: 45px;
+  position: absolute;
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
   color: #777;
@@ -142,11 +143,7 @@ p {
   text-decoration: none;
 }
 
-footer {
-  position: fixed;
-  bottom: 60px;
-  width: 100%;
-}
+
 
 
 .fc {

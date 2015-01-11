@@ -10,37 +10,38 @@
           </ul>
         </div>
     <% end %>
+    <form class="form-horizontal">
+      <div class="field form-group">
+        <%= f.label :value %><br>
+        <%= f.text_field :value %>
+      </div>
 
-    <div class="field form-group">
-      <%= f.label :value %><br>
-      <%= f.text_field :value %>
-    </div>
+      <div class="field">
+        <%= f.label :date %><br>
+        <%= f.date_select :created_at %>
+      </div>
 
-    <div class="field">
-      <%= f.label :date %><br>
-      <%= f.date_select :created_at %>
-    </div>
+      <div class="field">
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+      </div>
 
-     <div class="field">
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-    </div>
+      <div class="field">
+        <%= f.label :payedby %><br>
+        <%= f.collection_check_boxes :payedby, User.where.not(id: current_user.id).where(flat_id: current_user.flat_id), :id, :name %>
+      </div>
 
-    <div class="field">
-      <%= f.label :payedby %><br>
-      <%= f.collection_check_boxes :payedby, User.where.not(id: current_user.id).where(flat_id: current_user.flat_id), :id, :name %>
-    </div>
+      <div class="field">
+        <%= f.label :market_id %><br>
+        <%= f.select :market_id, Market.all.collect {|p| [ p.name, p.id ] }, { include_blank: true } %>
+      </div>
 
-    <div class="field">
-      <%= f.label :market_id %><br>
-      <%= f.select :market_id, Market.all.collect {|p| [ p.name, p.id ] }, { include_blank: true } %>
-    </div>
+      <div class="field">
+        <%= f.label :note %><br>
+        <%= f.text_field :note %>
+      </div>
 
-    <div class="field">
-      <%= f.label :note %><br>
-      <%= f.text_field :note %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit %>
-    </div>
+      <div class="actions">
+        <%= f.submit :class => 'btn btn-default'%>
+      </div>
+    </form>
 <% end %>
