@@ -1,0 +1,36 @@
+<%= form_for(@task) do |f| %>
+    <% if @task.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+          <ul>
+            <% @task.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :description %><br>
+      <%= f.text_area :description %>
+    </div>
+    <div class="field">
+      <%= f.label :credit %><br>
+      <%= f.number_field :credit %>
+    </div>
+    <div class="field">
+      <%= f.label :interval %><br>
+      <%= f.select :interval, ['Every Week', 'Every Day', 'Every 2 Weeks', 'Every 3 Weeks', 'Every 4 Weeks', 'Every Year']%>
+    </div>
+    <div class="field">
+      <%= f.hidden_field :flat_id, :value => current_user.flat_id %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
