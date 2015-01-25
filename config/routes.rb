@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
 
 
+  resources :tasks
+
   resources :bills, only: []
   authenticate :user do
     resources :invites

@@ -16,6 +16,7 @@ gem 'mysql'
 gem 'groupdate'
 gem 'active_median', '~> 0.1.0'
 gem 'paperclip', '~> 4.1'
+gem 'whenever', :require => false
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'will_paginate-bootstrap'

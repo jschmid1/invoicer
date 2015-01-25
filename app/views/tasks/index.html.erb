@@ -1,0 +1,58 @@
+<h1>Listing tasks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Credit</th>
+      <th>Interval</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.name %></td>
+        <td><%= task.description %></td>
+        <td><%= task.credit %></td>
+        <td><%= task.interval %></td>
+        <td><%= link_to 'Show', task %></td>
+        <td><%= link_to 'Edit', edit_task_path(task) %></td>
+        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% @current_tasks.each do |task| %>
+      <%= User.find_by(id:task.user_id).name%>
+       is currently doing
+      <%= Task.find_by(id:task.task_id).name%>
+    <br>
+<% end %>
+
+<br>
+<% @free_tasks.each do |task| %>
+    <%= Task.find_by(id:task).name%>
+    is free
+    <br>
+<% end %>
+<br>
+<% @free_user.each do |user| %>
+    <%= User.find_by(id: user).name%>
+    is free
+    <br>
+<% end %>
+
+<br>
+
+
+
+
+
+
+<br>
+
+<%= link_to 'New Task', new_task_path %>
