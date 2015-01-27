@@ -2,9 +2,9 @@ require_relative '../rails_helper'
 require 'faker'
 FactoryGirl.define do
   factory :user do |u|
-    u.name {Faker::Name.first_name} 
+    u.name "test"
     u.email "jeff@test.com"
-    u.password "testtesttest"
-    u.password_confirmation "testtesttest"
+    u.password "12345678"
+    u.password_confirmation "12345678"
   end
 end
