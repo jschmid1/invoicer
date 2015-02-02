@@ -4,8 +4,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates_presence_of :name, :on=>:create
-  has_and_belongs_to_many :bills
-  has_and_belongs_to_many :tasks
+  #has_and_belongs_to_many :bills, :join_table => "bills_users" 
+  has_many :involved_in_bills
+  has_many :bills, :through => :involved_in_bills
+  has_many :working_on_tasks
+  has_many :tasks, :through => :working_on_tasks
+  #has_and_belongs_to_many :tasks, :join_table => "tasks_users"
   belongs_to :flat
   has_many :todos
   has_many :invitations, :class_name => "Invite", :foreign_key => 'recipient_id'
