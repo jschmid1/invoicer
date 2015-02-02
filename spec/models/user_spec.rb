@@ -1,4 +1,4 @@
-require 'rails_helper'
+require_relative '../rails_helper'
 
 describe 'User' do
   it 'has a valid factory' do
