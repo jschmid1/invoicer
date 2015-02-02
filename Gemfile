@@ -21,6 +21,7 @@ gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'will_paginate-bootstrap'
 gem 'jquery-rails'
+gem 'pry-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets

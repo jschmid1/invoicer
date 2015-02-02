@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150116184009) do
+ActiveRecord::Schema.define(version: 20150202131801) do
 
   create_table "bills", force: true do |t|
     t.float    "value",      limit: 24
@@ -21,6 +21,11 @@ ActiveRecord::Schema.define(version: 20150116184009) do
     t.datetime "updated_at"
     t.integer  "payedby"
     t.string   "note"
+  end
+
+  create_table "bills_users", id: false, force: true do |t|
+    t.integer "bill_id", null: false
+    t.integer "user_id", null: false
   end
 
   create_table "events", force: true do |t|
@@ -84,6 +89,11 @@ ActiveRecord::Schema.define(version: 20150116184009) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "flat_id"
+  end
+
+  create_table "tasks_users", id: false, force: true do |t|
+    t.integer "task_id", null: false
+    t.integer "user_id", null: false
   end
 
   create_table "todos", force: true do |t|
