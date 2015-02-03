@@ -17,7 +17,6 @@ gem 'groupdate'
 gem 'active_median', '~> 0.1.0'
 gem 'paperclip', '~> 4.1'
 gem 'whenever', :require => false
-gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'will_paginate-bootstrap'
 gem 'jquery-rails'
@@ -43,6 +42,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'rspec-rails'
 gem 'factory_girl_rails'
 gem 'faker'
+gem 'capybara'
+gem 'selenium-webdriver'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
