@@ -51,6 +51,7 @@ class BillsController < ApplicationController
   end
 
   def update
+    set_bill
     @bill.update(bill_params)
     respond_with(@bill)
   end
