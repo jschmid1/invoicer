@@ -16,5 +16,4 @@
 //= require turbolinks
 //= require jsapi
 //= require chartkick
-//= require fullcalendar
 //= require_tree .
