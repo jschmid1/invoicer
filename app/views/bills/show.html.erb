@@ -9,6 +9,7 @@
 <p>
   <strong>Payed by:</strong>
   <%= User.where(id: @bill.user_id).first.name %>
+  Not correct if payer != current_user
 </p>
 
 <p>
