@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150202170243) do
+ActiveRecord::Schema.define(version: 20150205211905) do
 
   create_table "bills", force: true do |t|
     t.float    "value",      limit: 24
@@ -28,6 +28,9 @@ ActiveRecord::Schema.define(version: 20150202170243) do
     t.integer "user_id", null: false
   end
 
+  add_index "bills_users", ["bill_id", "user_id"], name: "index_bills_users_on_bill_id_and_user_id", using: :btree
+  add_index "bills_users", ["user_id", "bill_id"], name: "index_bills_users_on_user_id_and_bill_id", using: :btree
+
   create_table "events", force: true do |t|
     t.string   "title"
     t.text     "description"
@@ -35,6 +38,7 @@ ActiveRecord::Schema.define(version: 20150202170243) do
     t.datetime "end_time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "creator"
   end
 
   create_table "events_users", id: false, force: true do |t|
@@ -47,7 +51,7 @@ ActiveRecord::Schema.define(version: 20150202170243) do
 
   create_table "flats", force: true do |t|
     t.string   "name"
-    t.integer  "owner"
+    t.string   "owner"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "avatar_file_name"
@@ -104,9 +108,12 @@ ActiveRecord::Schema.define(version: 20150202170243) do
     t.integer "user_id", null: false
   end
 
+  add_index "tasks_users", ["task_id", "user_id"], name: "index_tasks_users_on_task_id_and_user_id", using: :btree
+  add_index "tasks_users", ["user_id", "task_id"], name: "index_tasks_users_on_user_id_and_task_id", using: :btree
+
   create_table "todos", force: true do |t|
     t.string   "task"
-    t.boolean  "done"
+    t.boolean  "done",       default: false
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -141,9 +148,9 @@ ActiveRecord::Schema.define(version: 20150202170243) do
   create_table "working_on_tasks", force: true do |t|
     t.integer  "user_id"
     t.integer  "task_id"
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.boolean  "done"
+    t.datetime "start_time", default: '2015-02-05 21:15:01'
+    t.datetime "end_time",   default: '2015-02-19 21:15:01'
+    t.boolean  "done",       default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -14,7 +14,7 @@
 
 <p>
   <strong>Market:</strong>
-  <%= Market.where(id: @bill.market_id).first.name  %>
+  <%= Market.where(id: @bill.market_id).first.name if Market.find_by(id: @bill.market_id)  %>
 </p>
 <%if @bill.note %>
     <p>

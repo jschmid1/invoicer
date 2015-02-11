@@ -20,8 +20,8 @@
 <%= bar_chart User.where(flat_id: current_user.flat_id).group(:name).sum(:balance) if current_user.flat_id%>
 <p>
   <strong>Owner:</strong>
-  <%= User.find_by(id: @flat.owner).name %>
-  <%= link_to image_tag(User.find_by(id: @flat.owner).avatar.url(:thumb), class: 'round-image-50'), User.find_by(id: @flat.owner) %>
+  <%= User.find_by(id: @flat.owner).name if  User.find_by(id: @flat.owner) %>
+  <%= link_to image_tag(User.find_by(id: @flat.owner).avatar.url(:thumb), class: 'round-image-50'), User.find_by(id: @flat.owner) if  User.find_by(id: @flat.owner) %>
 </p>
 
 
