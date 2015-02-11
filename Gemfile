@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
+gem 'slim-rails'
 gem 'devise'
 gem 'bootstrap-sass', '~> 3.2.0'
 # gem 'twitter-bootstrap-rails'
@@ -41,9 +42,12 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 #testing
 gem 'rspec-rails'
 gem 'factory_girl_rails'
+gem 'shoulda'
 gem 'faker'
 gem 'capybara'
+gem 'poltergeist', require: false
 gem 'selenium-webdriver'
+gem 'cucumber-rails', :require => false
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
