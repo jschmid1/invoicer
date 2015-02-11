@@ -3,11 +3,6 @@ class FlatsController < ApplicationController
 
   respond_to :html
 
-  # def index
-  #   @flats = Flat.all
-  #   respond_with(@flats)
-  # end
-
   def show
     @member = User.where(flat_id: @flat.id)
     respond_with(@flat)
@@ -18,15 +13,13 @@ class FlatsController < ApplicationController
     respond_with(@flat)
   end
 
-  # def edit
-  #   #TODO
-  # end
-
   def create
     @flat = Flat.new(flat_params)
     @flat.save
     # If owner leaves, transfer ownership or delete flat?
     User.find(current_user).update(flat_id: @flat.id)
+    @flat.update_attributes(owner: current_user)
+    # @flat.owner = current_user ?
     respond_with(@flat)
   end
 
@@ -38,6 +31,7 @@ class FlatsController < ApplicationController
   def destroy
     @flat.destroy
     respond_with(@flat)
+    #prevent .. dump data to somewhere
   end
 
   private
