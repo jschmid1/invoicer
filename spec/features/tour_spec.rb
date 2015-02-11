@@ -30,6 +30,7 @@ describe "A guided Tour", :type => :feature do
 
   def sign_up_with(email, password)
     visit user_session_path
+    byebug
     fill_in 'Email', with: email
     fill_in 'Password', with: password
     click_button 'Log in'
