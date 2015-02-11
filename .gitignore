@@ -6,6 +6,7 @@ capybara-*.html
 /db/*.sqlite3
 /config/database.yml
 /public/system
+/public/assets/**
 /coverage/
 /spec/tmp
 /.idea/*
