@@ -20,6 +20,7 @@ class BillsController < ApplicationController
   end
 
   def edit
+    set_bill
   end
 
   def create
