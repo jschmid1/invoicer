@@ -41,6 +41,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 #testing
 gem 'rspec-rails'
+gem 'simplecov'
 gem 'factory_girl_rails'
 gem 'shoulda'
 gem 'faker'
