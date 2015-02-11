@@ -1,4 +1,6 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
+require 'simplecov'
+SimpleCov.start
 ENV["RAILS_ENV"] ||= 'test'
 require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
@@ -9,12 +11,15 @@ require 'capybara/rspec'
 require 'capybara/rails'
 require 'shoulda/matchers'
 
+
+
 RSpec.configure do |config|
   config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
   config.include FactoryGirl::Syntax::Methods
   config.include RSpec::Rails::RequestExampleGroup
-  # config.include Devise::TestHelpers, :type => :controller
+  config.include Devise::TestHelpers, type: :controller
+  config.include Warden::Test::Helpers
   config.color = true
   config.formatter = :documentation
   config.expect_with :rspec do |expectations|

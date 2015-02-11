@@ -1,28 +1,21 @@
 require 'rails_helper'
 
 describe BillsController, type: :controller  do
-  describe 'index' do
+  describe 'GET #index' do
 
-    before :each do
-      user= FactoryGirl.create(:user)
-      sign_in user
+
+    it 'renders template index' do
+      login_as(build(:user), :scope => :user, :run_callbacks => false)
+      get bills_path
+      expect(response).to render_template :index
     end
 
-    it 'cant get all the bills because not logged in' do
-      byebug
-      get "/bills"
-      expect(response).to be_success
+    it 'assignes bills correctly' do
+      bill = build(:bill)
+      get bills_path
+      assigns(:bill).should eq([bill])
     end
-
 
   end
-  def sign_in(user = double('user'))
-    if user.nil?
-      allow(request.env['warden']).to receive(:authenticate!).and_throw(:warden, {:scope => :user})
-      allow(controller).to receive(:current_user).and_return(nil)
-    else
-      allow(request.env['warden']).to receive(:authenticate!).and_return(user)
-      allow(controller).to receive(:current_user).and_return(user)
-    end
-  end
+
 end
