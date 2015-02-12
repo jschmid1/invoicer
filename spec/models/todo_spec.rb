@@ -5,20 +5,13 @@ describe Todo do
 
   describe 'validation' do
 
-    it 'should have a present task before creation <true>' do
-      expect(FactoryGirl.build(:flat)).to be_valid
+    it 'wont be saved without a task' do 
+      expect(subject).to be_invalid
     end
 
-    it 'wont be saved without a taskname' do
-      expect(Todo.create(task: nil)).to be_invalid
-    end
-
-  end
-
-  describe 'factory' do
-
-    it 'should have a valid factory' do
-      subject { FactoryGirl.build(:flat) }
+    it 'will be saved with a task' do 
+      subject.task = "Testing rails"
+      expect(subject).to be_valid
     end
 
   end
