@@ -16,5 +16,7 @@ RSpec.describe BillsController, type: :controller  do
       expect(response.status).to eq(200)
     end
 
+    it 'will test the calculate_balance method' do
+    end
   end
 end
