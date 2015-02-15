@@ -1,67 +1,31 @@
 //@import "bootstrap-sprockets";
 //@import "bootstrap";
 
-  /* footer */
-//html {
-//  overflow-y: scroll;
-//}
 
-//td
-//{
-//  height: 50px;
-//  width:50px;
-//}
+.div {
+  max-width: 100px;
+}
+
 div
 {
   text-align: center;
 }
-//div.alert-info
-//{
-//  width: 100%;
-//  padding: 15px 0;
-//  background: rgba(255,255,120,0.2);
-//  border-bottom: 2px solid #FFFFAA;
-//}
-//div.alert-danger
-//{
-//  width: 100%;
-//  padding: 15px 0;
-//  background: rgba(255,255,120,0.2);
-//  border-bottom: 2px solid #FFFFAA;
-//}
-//div.alert-success
-//{
-//  width: 100%;
-//  padding: 15px 0;
-//  background: rgba(255,255,120,0.2);
-//  border-bottom: 2px solid #FFFFAA;
-//}
-//div.alert-warning
-//{
-//  width: 100%;
-//  padding: 15px 0;
-//  background: rgba(255,255,120,0.2);
-//  border-bottom: 2px solid #FFFFAA;
-//}
 
-//table
-//{
-//  margin-left: auto;
-//  margin-right: auto;
-//}
+div.custom-table {
+  max-width: 300px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
+
+}
+
 
 body {
   padding-top: 60px;
   padding-bottom: 70px;
 }
-//
-//section {
-//  overflow: auto;
-//}
-//
-//textarea {
-//  resize: vertical;
-//}
 
 .center {
   text-align: center;
