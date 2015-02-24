@@ -4,7 +4,7 @@ class BillsController < ApplicationController
 
   def index
     flatmates = User.where(flat_id: current_user.flat_id)
-    @bills = Bill.where(user_id: flatmates.map {|x|x.id}).paginate(page: params[:page], per_page: 5).order('created_at DESC')
+    @bills = Bill.where(user_id: flatmates.map {|x|x.id}).paginate(page: params[:page], per_page: 5).order('id DESC')
     respond_with(@bills)
   end
 
