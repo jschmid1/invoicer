@@ -1,42 +1,36 @@
-
-<% if @items_not_done.any? %>
-    <h2> Todo </h2> <br>
-<% else %>
-    <h2> Nothing to do. </h2> <br>
-<% end %>
-
+<h2> Todo </h2> <br>
 <div class="custom-table">
-  <table class="table table-hover table-bordered">
-    <% if @items_not_done %>
-        <% @items_not_done.each  do |todo|  %>
-            <tbody>
-            <tr class="container tr">
-              <td> <%= todo.task %></td>
-              <td> <%= link_to "Mark as complete", complete_todo_path(todo), :method => :put, class: 'btn btn-success btn-xs' %></td>
-            </tr>
-        <% end %>
-    <% end %>
-    <!--<%= will_paginate @items_not_done, renderer: BootstrapPagination::Rails %>-->
-    </tbody>
-  </table>
-
-
-  <% if @items_done.any? %>
-      <h2> Done </h2>
+<table class="table table-hover table-bordered">
+  <% if @items_not_done %>
+      <% @items_not_done.each  do |todo|  %>
+          <tbody>
+          <tr class="container tr">
+            <td> <%= todo.task %></td>
+            <td> <%= link_to "Mark as complete", complete_todo_path(todo), :method => :put, class: 'btn btn-success btn-xs' %></td>
+          </tr>
+      <% end %>
   <% end %>
-  <table class="table table-hover table-bordered ">
-    <% if @items_done %>
-        <% @items_done.each do |todo| %>
-            <tbody>
-            <tr>
-              <td> <%= todo.task %> </td>
-              <td> <%= link_to "Mark as incomplete", incomplete_todo_path(todo), :method => :put, class: 'btn btn-success btn-xs' %></td>
-              <td> <%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
-            </tr>
-            </tbody>
+  <!--<%= will_paginate @items_not_done, renderer: BootstrapPagination::Rails %>-->
+  </tbody>
+</table>
 
-        <% end %>
-    <% end %>
-  </table>
-  <%= render 'form' %>
+
+<h2> Done </h2>
+
+<table class="table table-hover table-bordered ">
+  <% if @items_done %>
+      <% @items_done.each do |todo| %>
+          <tbody>
+          <tr>
+            <td> <%= todo.task %> </td>
+            <td> <%= link_to "Mark as incomplete", incomplete_todo_path(todo), :method => :put, class: 'btn btn-success btn-xs' %></td>
+            <td> <%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
+          </tr>
+          </tbody>
+
+<% end %>
+  <% end %>
+</table>
+<%= render 'form' %>
 </div>
+

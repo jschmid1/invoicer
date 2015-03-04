@@ -5,8 +5,14 @@ class User < ActiveRecord::Base
   after_create :user_task_entry
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :bills
+  validates_presence_of :name, :on=>:create
+  has_and_belongs_to_many :events
+  has_many :involved_in_bills
+  has_many :bills, :through => :involved_in_bills
+  has_many :working_on_tasks
+  has_many :tasks, :through => :working_on_tasks
   belongs_to :flat
+  has_many :todos
   has_many :invitations, :class_name => "Invite", :foreign_key => 'recipient_id'
   has_many :sent_invites, :class_name => "Invite", :foreign_key => 'sender_id'
   has_many :working_on_tasks

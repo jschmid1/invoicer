@@ -3,8 +3,9 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
+gem 'slim-rails'
 gem 'devise'
-gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap-sass', '~> 3.2.0.2'
 # gem 'twitter-bootstrap-rails'
 gem 'autoprefixer-rails'
 gem 'better_errors'
@@ -17,10 +18,10 @@ gem 'groupdate'
 gem 'active_median', '~> 0.1.0'
 gem 'paperclip', '~> 4.1'
 gem 'whenever', :require => false
-gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'will_paginate-bootstrap'
 gem 'jquery-rails'
+gem 'pry-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -37,8 +38,21 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'guard-rspec'
+  gem 'simplecov'
+  gem 'factory_girl_rails'
+  gem 'shoulda'
+  gem 'faker'
+  gem 'capybara'
+  gem 'poltergeist', require: false
+  gem 'selenium-webdriver'
+  gem 'cucumber-rails', :require => false
+  gem 'spring'
+end
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
 gem 'capistrano', '~> 3.1'
 gem 'capistrano-bundler', '~> 1.1.2'
 gem 'capistrano-rails'

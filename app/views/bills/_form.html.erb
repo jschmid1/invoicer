@@ -27,7 +27,7 @@
             <form class="form-horizontal">
               <div class="field form-group">
                 <%= f.label :value %><br>
-                <%= f.text_field :value %>
+                <%= f.number_field :value, class: 'text_field', step: 'any' %>
               </div>
 
               <div class="field">
@@ -40,13 +40,19 @@
               </div>
 
               <div class="field">
+                <%= f.label :pay_guy %><br>
+                <%= f.select :user_ids, User.where(flat_id: current_user.flat_id).collect {|p| [ p.name, p.id ] } %>
+              </div>
+
+
+              <div class="field">
                 <%= f.label :payedby %><br>
-                <%= f.collection_check_boxes :payedby, User.where.not(id: current_user.id).where(flat_id: current_user.flat_id), :id, :name %>
+                <%= f.collection_check_boxes :payedby, User.where(flat_id: current_user.flat_id), :id, :name %>
               </div>
 
               <div class="field">
                 <%= f.label :market_id %><br>
-                <%= f.select :market_id, Market.all.collect {|p| [ p.name, p.id ] }, { include_blank: true } %>
+                <%= f.select :market_id, Market.all.collect {|p| [ p.name, p.id ] } %>
               </div>
 
               <div class="field">

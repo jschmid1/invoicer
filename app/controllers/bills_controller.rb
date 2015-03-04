@@ -4,7 +4,7 @@ class BillsController < ApplicationController
 
   def index
     flatmates = User.where(flat_id: current_user.flat_id)
-    @bills = Bill.where(user_id: flatmates.map {|x|x.id}).paginate(page: params[:page], per_page: 5).order('created_at DESC')
+    @bills = Bill.where(user_id: flatmates.map {|x|x.id}).paginate(page: params[:page], per_page: 5).order('id DESC')
     respond_with(@bills)
   end
 
@@ -20,6 +20,7 @@ class BillsController < ApplicationController
   end
 
   def edit
+    set_bill
   end
 
   def create
@@ -38,12 +39,12 @@ class BillsController < ApplicationController
       InvolvedInBill.new(json).save
     end
     InvolvedInBill.new({'user_id' => "#{@bill.user_id}", 'bill_id' => "#{@bill.id}"}).save
-    pos_user=User.find_by(id: @bill.user_id)
-    frac_val = ((@bill.value)/((params[:bill][:payedby].size) + 1))
+    @pos_user= User.find_by(id: params[:bill][:user_ids])
+    frac_val = ((@bill.value)/((params[:bill][:payedby].size)))
     params[:bill][:payedby].each do |id|
       User.find_by(id: id).update_attributes(balance: "#{User.find_by(id: id).balance  - frac_val})")
     end
-    pos_user.update_attributes(balance: "#{User.find_by(id: @bill.user_id).balance + @bill.value - frac_val}")
+    @pos_user.update_attributes(balance: "#{User.find_by(id: params[:bill][:user_ids]).balance + @bill.value}")
   end
 
   def update_market_count
@@ -51,6 +52,7 @@ class BillsController < ApplicationController
   end
 
   def update
+    set_bill
     @bill.update(bill_params)
     respond_with(@bill)
   end

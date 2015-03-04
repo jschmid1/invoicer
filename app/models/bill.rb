@@ -1,7 +1,7 @@
 class Bill < ActiveRecord::Base
-  belongs_to :user
+  has_many :involved_in_bills
+  has_many :users, :through => :involved_in_bills
   has_one :market
   validates :value, presence: true
   validates :market_id, presence: true
-  accepts_nested_attributes_for :user
 end

@@ -3,17 +3,18 @@
 <p>
 
   <strong>Value:</strong>
-  <%= @bill.value %>
+  <%=number_with_precision(@bill.value, precision: 2) %>
 </p>
 
 <p>
   <strong>Payed by:</strong>
   <%= User.where(id: @bill.user_id).first.name %>
+  Not correct if payer != current_user
 </p>
 
 <p>
   <strong>Market:</strong>
-  <%= Market.where(id: @bill.market_id).first.name  %>
+  <%= Market.where(id: @bill.market_id).first.name if Market.find_by(id: @bill.market_id)  %>
 </p>
 <%if @bill.note %>
     <p>

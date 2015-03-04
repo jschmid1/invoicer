@@ -11,9 +11,11 @@
  * file per style scope.
  */
 
- *= require_tree
+ /*
  *= require_self
- *= require fullcalendar
+ *= require_tree .
+ */
+
 @import "bootstrap-sprockets"
 @import "bootstrap"
 @import "custom"
