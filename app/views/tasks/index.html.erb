@@ -1,12 +1,13 @@
 <h1>Listing tasks</h1>
 
-<table>
+<table class="table table-hover table-bordered">
   <thead>
     <tr>
       <th>Name</th>
       <th>Description</th>
       <th>Credit</th>
       <th>Interval</th>
+      <th>Action</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -30,11 +31,13 @@
       <%= User.find_by(id:task.user_id).name%>
        is currently doing
       <%= Task.find_by(id:task.task_id).name%>
+        for the next <%= distance_of_time_in_words(task.end_time, Date.today)%>
     <br>
 <% end %>
 
 <br>
 <% @free_tasks.each do |task| %>
+    Task
     <%= Task.find_by(id:task).name%>
     is free
     <br>

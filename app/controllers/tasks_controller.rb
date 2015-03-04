@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  require 'yaml'
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -41,7 +42,7 @@ class TasksController < ApplicationController
   end
 
   def show_current_tasks
-    WorkingOnTask.where("end_time > ?", Time.now).where(user_id: User.where(flat_id: current_user.flat_id))
+    WorkingOnTask.where("end_time >= ?", Time.now).where(user_id: User.where(flat_id: current_user.flat_id))
   end
 
   def check_for_free_users
@@ -56,31 +57,42 @@ class TasksController < ApplicationController
     all_tasks - tasks
   end
 
+  def check_recent_tasks_from_user(user_id)
+    file = 'config/user_tasks.yml'
+    data = YAML::load_file(file)
+    if data[user_id].count >= Task.count
+      data[user_id] = []
+      return data[user_id]
+    end
+    data[user_id]
+  end
+
+  def update_user_status(user_id, task_id)
+    file = 'config/user_tasks.yml'
+    data = YAML::load_file(file)
+    data[user_id].push(task_id)
+    if data[user_id].count >= Task.count
+      data[user_id] = []
+    end
+    File.open(file, 'w') {|f| f.write data.to_yaml }
+  end
+
+
   def tasks_to_user
     unless check_for_free_users.empty?
       check_for_free_users.each do |user_id|
-        unless find_free_tasks.empty?
-          find_free_tasks.each do |task_id|
-            WorkingOnTask.new(user_id: user_id, task_id: task_id, start_time: calculate_time_from_interval('start', task_id), end_time: calculate_time_from_interval('end', task_id)).save
-            break
-          end
-        end
-        end
+       unless find_free_tasks.empty?
+         potential_tasks = (find_free_tasks - check_recent_tasks_from_user(user_id))
+         if potential_tasks.any?
+           users_task = potential_tasks.first
+           WorkingOnTask.create(user_id: user_id, task_id: users_task, start_time: calculate_time_from_interval('start', users_task), end_time: calculate_time_from_interval('end', users_task))
+           update_user_status(user_id, users_task)
+         else
+           break
+         end
+       end
+      end
     end
-      # scopes... ZOMG
-      # done button
-      # calculate credits based on relation table
-      # only give credit if done&&end_time
-
-  end
-
-  def already_did_this_shit()
-    # check which tasks were already done by each user
-
-    # check for the last X entries in WorkingOnTask.. map it , subtract from all Tasks.
-    # if mapped ids.count == all tasks.all.count
-
-    # dont give the same tasks twice/trice in a row
   end
 
   def calculate_time_from_interval(start_or_stop, task_id)
