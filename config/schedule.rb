@@ -18,7 +18,7 @@
 # end
 
 set :output, "log/cron.log"
-every 1.seconds do
-  runner Task.new.tasks_to_user
+every 1.minute do
+  runner  "TasksController.new.tasks_to_user"
 end
 # Learn more: http://github.com/javan/whenever

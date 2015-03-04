@@ -9,8 +9,6 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :events
   has_many :involved_in_bills
   has_many :bills, :through => :involved_in_bills
-  has_many :working_on_tasks
-  has_many :tasks, :through => :working_on_tasks
   belongs_to :flat
   has_many :todos
   has_many :invitations, :class_name => "Invite", :foreign_key => 'recipient_id'
@@ -25,7 +23,7 @@ class User < ActiveRecord::Base
   def user_task_entry
     file = 'config/user_tasks.yml'
     data = YAML::load_file(file)
-    data.merge(User.last.id => [])
+    data.merge!(User.last.id => [])
     File.open(file, 'w') {|f| f.write data.to_yaml }
   end
 

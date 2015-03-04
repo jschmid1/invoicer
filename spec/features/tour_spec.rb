@@ -14,7 +14,6 @@ describe "A guided Tour", :type => :feature do
     visit bills_path
     expect(page).to have_content('Listing bills')
     visit todos_path
-    expect(page).to have_content('InCompleted')
     expect(page).to_not have_content('Admin')
     visit root_path
     expect(page).to_not have_content('List all Bills')
