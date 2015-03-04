@@ -3,7 +3,7 @@
 <p>
 
   <strong>Value:</strong>
-  <%= @bill.value %>
+  <%=number_with_precision(@bill.value, precision: 2) %>
 </p>
 
 <p>
