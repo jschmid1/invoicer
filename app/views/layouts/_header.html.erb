@@ -1,53 +1,62 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <%= link_to "INVOICER", root_path, id: "logo" %>
-    <nav>
-      <ul class="nav navbar-nav pull-right">
+<div class="navbar navbar-inverse navbar-fixed-top ">
+  <%= link_to "INVOICER", root_path, id: "logo" %>
+  <div class="navbar-header">
+
+    <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse" >
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <div class="collapse navbar-collapse navHeaderCollapse">
+
+      <ul class="nav navbar-nav nav-pull-left">
+
         <% if user_signed_in? %>
-            <li><%= link_to('Admin', admin_path)if current_user.admin %></li>
+            <%= link_to('Admin', admin_path)if current_user.admin %>
             <%= link_to image_tag(current_user.avatar.url(:thumb), class: 'round-image-50'), current_user %>
             <% if current_user.flat_id  %>
                 <i class="glyphicon glyphicon-plus text-success"></i>
             <%end%>
             <%= link_to image_tag(Flat.find_by(id: current_user.flat_id).avatar.url(:thumb), class: 'round-image-50'), flat_path(current_user.flat_id) if current_user.flat_id%>
+            <ul class="nav navbar-nav nav-pull-right">
+              <li>
+                <%= link_to('Dashboard', graphs_path)if current_user.flat_id %>
+              </li>
+              <li>
+                <%= link_to('Statisctics', statistics_path)if current_user.flat_id %>
+              </li>
+              <li>
+                <%= link_to('Create new bill', new_bill_path )if current_user.flat_id %>
+              </li>
+              <li>
+                <%= link_to('List all bills', bills_path)if current_user.flat_id %>
+              </li>
+              <li>
+                <%= link_to('Todos', todos_path) if current_user.flat_id %>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Account <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
 
-            <li>
-              <%= link_to('Dashboard', graphs_path)if current_user.flat_id %>
-            </li>
-            <li>
-              <%= link_to('Statisctics', statistics_path)if current_user.flat_id %>
-            </li>
-            <li>
-              <%= link_to('Create new bill', new_bill_path )if current_user.flat_id %>
-            </li>
-            <li>
-              <%= link_to('List all bills', bills_path)if current_user.flat_id %>
-            </li>
-            <li>
-              <%= link_to('Todos', todos_path) if current_user.flat_id %>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Account <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-
-                <!--<li class="divider"></li>-->
-                <li>
-                  <%= link_to('Edit Profile', edit_user_registration_path) %>
-                  <%= link_to('Invite to Flat', new_invite_path) if current_user.flat_id  %>
-                  <%= link_to('Create new Flat', new_flat_path) unless current_user.flat_id %>
-                  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-                </li>
-              </ul>
-            </li>
+                  <!--<li class="divider"></li>-->
+                  <li>
+                    <%= link_to('Edit Profile', edit_user_registration_path) %>
+                    <%= link_to('Invite to Flat', new_invite_path) if current_user.flat_id  %>
+                    <%= link_to('Create new Flat', new_flat_path) unless current_user.flat_id %>
+                    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+                  </li>
+                </ul>
+              </li>
 
         <% else %>
             <!--<%= link_to('Register', new_user_registration_path)  %>-->
             <!--<%= link_to('Login', new_user_session_path, class: 'btn btn-success')  %>-->
 
         <% end %>
+        </ul>
       </ul>
-    </nav>
+    </div>
   </div>
-</header>
+</div>
