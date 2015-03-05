@@ -15,7 +15,10 @@
               <%= link_to('Dashboard', graphs_path)if current_user.flat_id %>
             </li>
             <li>
-              <%= link_to('Statistiics', statistics_path)if current_user.flat_id %>
+              <%= link_to('Statistics', statistics_path)if current_user.flat_id %>
+            </li>
+            <li>
+              <%= link_to('Tasks', tasks_path)if current_user.flat_id %>
             </li>
             <li>
               <%= link_to('Create new bill', new_bill_path )if current_user.flat_id %>
