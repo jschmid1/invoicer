@@ -2,7 +2,9 @@
 <%= link_to image_tag(current_user.avatar.url(:medium), class: 'round-image-250'), current_user %> <br>
 <h1><%= @user.balance %></h1>
 
-Task for now: <%= @user.tasks.first.name%>
+<% if @user.tasks.any? %>
+  Task for now: <%= @user.tasks.first.name%>
+<% end%>
 <br>
 TODO: Progress Bar with Timeline
 

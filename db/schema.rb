@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205211905) do
+ActiveRecord::Schema.define(version: 20150202170243) do
 
   create_table "bills", force: true do |t|
     t.float    "value",      limit: 24
@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 20150205211905) do
     t.datetime "end_time"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "creator"
   end
 
   create_table "events_users", id: false, force: true do |t|
@@ -81,14 +80,6 @@ ActiveRecord::Schema.define(version: 20150205211905) do
     t.string   "name"
     t.integer  "count"
     t.integer  "voucher"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "meetings", force: true do |t|
-    t.string   "name"
-    t.datetime "starts_at"
-    t.datetime "ends_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -148,8 +139,8 @@ ActiveRecord::Schema.define(version: 20150205211905) do
   create_table "working_on_tasks", force: true do |t|
     t.integer  "user_id"
     t.integer  "task_id"
-    t.datetime "start_time", default: '2015-02-05 21:15:01'
-    t.datetime "end_time",   default: '2015-02-19 21:15:01'
+    t.datetime "start_time", default: '2015-06-03 08:35:43'
+    t.datetime "end_time",   default: '2015-06-17 08:35:43'
     t.boolean  "done",       default: false
     t.datetime "created_at"
     t.datetime "updated_at"
